@@ -25,12 +25,35 @@ class KnightPathFinder
         @considered_positions = [start]
     end
 
-    def build_move_tree(root)
-        
+    def new_move_positions(pos)
+        valid_moves = KnightPathFinder.valid_moves(pos)
+        valid_moves.reject! { |move| @considered_positions.include?(move) }
+        @considered_positions += valid_moves
+        return valid_moves
+    end
+
+    def build_move_tree(root_node)
+        start_pos = root_node.value
+        queue = [start_pos]
+        until queue.empty?
+            self.new_move_positions(queue.shift)
     end
 
     private
     attr_reader :root_node
 
 
+end
+def bfs(targeted_value)
+queue = [self]
+    
+    until queue.empty?
+      if queue.first.value == target_value
+        return queue.shift 
+      else
+        queue += queue.shift.children
+      end
+    end
+
+    nil
 end
