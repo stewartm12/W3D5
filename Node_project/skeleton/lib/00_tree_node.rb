@@ -50,4 +50,8 @@ class PolyTreeNode
     nil
   end
 
+  def inspect
+    "<# PolyTreeNode value = #{@value}>" 
+  end
+
 end
